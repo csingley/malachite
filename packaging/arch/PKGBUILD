@@ -1,0 +1,15 @@
+# Maintainer: Chris Singley <csingley@gmail.com>
+pkgname=malachite-colorscheme
+pkgver=0.1.0
+pkgrel=1
+pkgdesc='Malachite colorscheme files for terminals, editors and desktops'
+arch=('any')
+license=('MIT')
+source=("$pkgname-$pkgver.tar.gz")
+sha256sums=('77443458e877fcbbf4d1514be5d81fb4b1eb44c6d629d91b8abbecbda917055e')
+
+package() {
+  cp -a usr "$pkgdir/usr"
+  install -Dm644 usr/share/doc/malachite-colorscheme/LICENSE \
+    "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+}

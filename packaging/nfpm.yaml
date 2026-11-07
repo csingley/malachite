@@ -1,0 +1,17 @@
+name: malachite-colorscheme
+arch: all
+platform: linux
+version: ${VERSION}
+section: misc
+priority: optional
+maintainer: Chris Singley <csingley@gmail.com>
+description: |
+  Malachite colorscheme files for terminals, editors and desktops
+  Green colorscheme with named roles, as ready-to-use files for foot, btop,
+  tmux, Neovim, sway, waybar and more, under /usr/share/malachite.
+homepage: https://github.com/csingley/malachite
+license: MIT
+contents:
+  - src: ./usr
+    dst: /usr
+    type: tree
