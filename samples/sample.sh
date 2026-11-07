@@ -38,8 +38,8 @@ check_host() {
     log WARN "cannot reach $host"
     return 1
   fi
-  temp=$(ssh "$host" gpu-query --field=temperature --format=csv,noheader | head -n1)
-  util=$(ssh "$host" gpu-query --field=utilization --format=csv,noheader,nounits)
+  temp=$(ssh "$host" nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader | head -n1)
+  util=$(ssh "$host" nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits)
   if [[ $temp -gt $MAX_TEMP && "$util" != 0 ]]; then            # test brackets and operators
     log ERROR "$host is hot: ${temp}C at ${util}%"
     rc=2
@@ -74,7 +74,7 @@ main() {
   echo "failed: $failed" && return "$failed"
 }
 
-cmd=$(command -v gpu-query || true)                            # command substitution
+cmd=$(command -v nvidia-smi || true)                            # command substitution
 echo -e 'tab:\there' $'ansi:\x1b[0m' "glob: ${HOSTS[@]:0:2} ~/logs/*.log"   # escapes, globs, tilde
 
 main "$@"

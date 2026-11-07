@@ -78,7 +78,7 @@ def retry(times: int = MAX_RETRIES):
 def query_gpus(host: str, *, timeout: float = TIMEOUT_S) -> list[dict[str, str]]:
     """Function definition (the name) versus the calls inside it."""
     out = subprocess.run(
-        ["ssh", host, "gpu-query", "--field=name,memory.used", "--format=csv"],
+        ["ssh", host, "nvidia-smi", "--query-gpu=name,memory.used", "--format=csv"],
         capture_output=True,
         text=True,
         timeout=timeout,
